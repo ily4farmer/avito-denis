@@ -16,7 +16,7 @@ RUN pnpm run build
 
 RUN echo BUILD SUCCESSFUL
 
-FROM node:22.23.4-alpine AS PRODUCTION
+FROM node:22.23.4-alpine AS production
 
 WORKDIR /app
 
