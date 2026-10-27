@@ -13,6 +13,9 @@
     "enabled": true,
     "rules": {
       "preset": "recommended",
+      "style": {
+        "useImportType": "off"
+      },
       "suspicious": {
         "noExplicitAny": "error"
       }
