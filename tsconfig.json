@@ -20,7 +20,7 @@
     "strictPropertyInitialization": false,
     "types": ["vitest/globals", "node"]
   },
-   "watchOptions": {
+  "watchOptions": {
     "watchFile": "fixedPollingInterval",
     "watchDirectory": "fixedPollingInterval"
   }
