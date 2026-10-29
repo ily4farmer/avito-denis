@@ -14,8 +14,8 @@ COPY package.json pnpm-lock.yaml ./
 
 RUN pnpm i --frozen-lockfile
 
-# 3 Add production dependencies
-FROM deps AS deps-prod
+# 3 Production dependencies
+FROM base AS deps-prod
 
 COPY package.json pnpm-lock.yaml ./
 
@@ -31,6 +31,8 @@ RUN npm run build
 
 # 5 Final prod image
 FROM node:22.23.4-alpine AS prod
+
+WORKDIR /app
 
 COPY --from=deps-prod /app/node_modules ./node_modules
 COPY --from=build /app/package.json ./package.json
