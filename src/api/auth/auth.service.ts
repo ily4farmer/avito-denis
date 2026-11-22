@@ -5,7 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { hash } from 'argon2';
 import { Repository } from 'typeorm';
-import { ENV } from '../constants/env.js';
+import { ENV } from '../../constants/env.js';
 import { CreateAuthDto } from './dto/create-auth.dto.js';
 import { RegisterResponse } from './dto/register.dto.js';
 import { UpdateAuthDto } from './dto/update-auth.dto.js';

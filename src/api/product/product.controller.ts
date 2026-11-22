@@ -27,7 +27,7 @@ export class ProductController {
       path: '/product',
     },
   })
-  @Post()
+  @Post('create')
   create(@Body() createProductDto: CreateProductDto) {
     return this.productService.create(createProductDto);
   }
