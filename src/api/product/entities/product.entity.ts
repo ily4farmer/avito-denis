@@ -5,7 +5,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { PRODUCT_COLOR, PRODUCT_SIZE, PRODUCT_TYPE } from '../../constants/product.js';
+import { PRODUCT_COLOR, PRODUCT_SIZE, PRODUCT_TYPE } from '../../../constants/product.js';
 
 @Entity('products')
 export class ProductEntity {

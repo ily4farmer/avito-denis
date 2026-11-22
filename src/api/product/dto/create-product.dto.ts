@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
-import { PRODUCT_COLOR, PRODUCT_SIZE, PRODUCT_TYPE } from '../../constants/product.js';
+import { PRODUCT_COLOR, PRODUCT_SIZE, PRODUCT_TYPE } from '../../../constants/product.js';
 
 export class CreateProductDto {
   @ApiProperty({ description: 'Название товара', example: 'Хлопковая футболка', type: String })

@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './api/auth/auth.module.js';
+import { ProductModule } from './api/product/product.module.js';
+import { TodoModule } from './api/todo/todo.module.js';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
-import { AuthModule } from './auth/auth.module.js';
 import { getTypeOrmConfig } from './config/typeOrm.config.js';
-import { ProductModule } from './product/product.module.js';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ProductModule } from './product/product.module.js';
     }),
     ProductModule,
     AuthModule,
+    TodoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
