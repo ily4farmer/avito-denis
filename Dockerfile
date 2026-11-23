@@ -1,42 +1,42 @@
-# 1 Base image 
+# 1. Base image
 FROM node:22.23.4-alpine AS base
-
-LABEL version="1.0.1"
-
-RUN npm i -g pnpm   
 
 WORKDIR /app
 
-# 2 Add all dependencies for assembly
+RUN npm install -g pnpm@12.16.1
+
+# 2. Development dependencies
 FROM base AS deps
 
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-RUN pnpm i --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
-# 3 Production dependencies
+# 3. Production dependencies
 FROM base AS deps-prod
 
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 RUN pnpm install --prod --frozen-lockfile
 
-# 4 Build the application
+# 4. Build application
 FROM base AS build
+
 COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 
-RUN npm run build
+RUN pnpm build
 
-# 5 Final prod image
+# 5. Production image
 FROM node:22.23.4-alpine AS prod
 
 WORKDIR /app
+
+ENV NODE_ENV=production
 
 COPY --from=deps-prod /app/node_modules ./node_modules
 COPY --from=build /app/package.json ./package.json
 COPY --from=build /app/dist ./dist
 
-ENV NODE_ENV=production
-CMD ["node", "dist/main.js"]
+EXPOSE 4000
